@@ -1,17 +1,17 @@
 import { useState } from 'react'
 
-// data buku
+//list buku
 const books = [
   { id: 1, title: 'Laut Bercerita', author: 'Leila S. Chudori', price: 45000, condition: 'Bagus' },
   { id: 2, title: 'Bumi Manusia', author: 'Pramoedya Ananta Toer', price: 38000, condition: 'Cukup' },
   { id: 3, title: 'Filosofi Teras', author: 'Henry Manampiring', price: 55000, condition: 'Seperti Baru' },
-  { id: 4, title: 'Atomic Habits', author: 'James Clear', price: 60000, condition: 'Seperti Baru' },
-  { id: 5, title: 'Sapiens', author: 'Yuval Noah Harari', price: 65000, condition: 'Bagus' },
+  { id: 4, title: 'Cantik Itu Luka', author: 'Eka Kurniawan', price: 60000, condition: 'Seperti Baru' },
+  { id: 5, title: 'Pulang', author: 'TereLiye', price: 55000, condition: 'Bagus' },
   { id: 6, title: 'Pulang', author: 'Leila S. Chudori', price: 35000, condition: 'Cukup' }, 
   { id: 7, title: '[komik]Brutal', author: 'Kei Koga', price: 25000, condition: 'seperti baru, baru dibaca sekali'}
 ]
 
-// no-wa
+//nomor wa
 const NOMOR_WA_PENJUAL = '6282245303038'
 
 export default function App() {
@@ -22,7 +22,7 @@ export default function App() {
   const [telepon, setTelepon] = useState('')
   const [terkirim, setTerkirim] = useState(false)
 
-  // keranjang
+  //keranjang
   function tambahKeKeranjang(book) {
     const sudahAda = cart.find((item) => item.id === book.id)
     if (sudahAda) {
@@ -40,7 +40,7 @@ export default function App() {
 
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0)
 
-  // kalo submit langsung otomatis terkirim ke wa
+  //kalo submit langsung otomatis terkirim ke wa
   function handleCheckout(e) {
     e.preventDefault()
     if (!nama || !alamat || !telepon) {
@@ -60,13 +60,12 @@ export default function App() {
     setCart([])
   }
 
-  //tampilannya
   return (
     <div className="container">
       <h1>📚 Katalog Buku Preloved</h1>
       <p>Buku bekas, kondisi jujur, harga bersahabat.</p>
 
-      {/* Kalau pesanan sudah terkirim, tampilkan ucapan terima kasih */}
+  
       {terkirim ? (
         <div className="card">
           <h2>Terima kasih, {nama}!</h2>
@@ -75,7 +74,7 @@ export default function App() {
         </div>
       ) : (
         <>
-          {/* Daftar buku */}
+          {/*list buku yg dibeli*/}
           <div className="grid">
             {books.map((book) => (
               <div className="card" key={book.id}>
@@ -88,7 +87,7 @@ export default function App() {
             ))}
           </div>
 
-          {/* Keranjang */}
+          {/*keranjang*/}
           <div className="cart">
             <h2>🛒 Keranjang ({cart.length})</h2>
 
@@ -112,7 +111,7 @@ export default function App() {
               </>
             )}
 
-            {/* Form checkout, muncul setelah klik tombol Checkout */}
+            {/*form co*/}
             {showForm && (
               <form onSubmit={handleCheckout} className="form">
                 <h3>Data Pembeli & Pengiriman</h3>
